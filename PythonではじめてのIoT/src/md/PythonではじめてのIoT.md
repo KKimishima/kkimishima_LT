@@ -1,7 +1,7 @@
 <!-- $theme: gaia -->
 <!-- page_number: true -->
 
-## ラズパイとPythonではじめてのIoT
+## ド素人がIoTに挑戦
 
 ----
 
@@ -9,7 +9,7 @@
 - 名前	 : KKimishima
 - Twitter :@k_kimikatsu123
 - github	:KKimishima
-- 仕事	 : 茨木の工場でIT管理部門
+- 仕事	 : 茨木の工場の管理部門
 - プログラム歴　:趣味の独学2年
 - 好きな言語 Java,Python,Ruby
 - 最近のHack
@@ -17,12 +17,12 @@ RubyのSinatraでフルスクラッチでブロク作製中
 
 ---
 
-# コーディングが楽しすぎて
-# 転職を考え中
+# hobbyプログラマーです
+# チャンスがありば仕事にすることを考えてます!!
 
 ---
 
-# はじめてのLTなので
+# ほぼはじめてのLTなので
 # 生温かい目で見てください!!!
 
 ---
@@ -72,10 +72,12 @@ RubyのSinatraでフルスクラッチでブロク作製中
 ### こんな感じです
 ![100% center](../img/drawing.svg)
 
----
+<!-- ---
 
 # 実演!!!
 
+
+--- -->
 ---
 
 RaspberryPiのpythonのコード
@@ -87,18 +89,20 @@ import time,json,requests
 import elitech
 # ドライバの設定
 device = elitech.Device("/dev/ttyUSB0")
+app_url = "https://hogehoge.com/"
+headers = {'content-type': 'application/json'}
 # 無限ループ
 while True:
     body = device.get_latest()
-    data = {"id":str(body[0]),"datetime":str(body[1]),
+    temp_data = {"id":str(body[0]),"datetime":str(body[1]),
         　　　"temp":str(body[2])}
-    requests.get("http://hogehoge.com",params=data)
+    requests.post(app_url,data=json.dumps(temp_data),
+    		                      headers=headers)
     time.sleep(120)
 ```
 
 ---
 Spring bootにWebApiを作製
-javaですみません!!!
 ```
 - 温度データ登録
 
@@ -128,10 +132,7 @@ jsが苦手なので出来は良くないです...
 ---
 
 # まとめ
-- ド素人でも手軽に~~ほとんど~~お金をかけずに
-IoTっぽいのは作れた!?
+- ド素人でも手軽に~~ほとんど~~お金をかけずにIoTっぽいのは作れた!?
 - herokuのfreeプランだと24時間起動ができないので、hobbyプランかAWSでやってみたい
 - 次回は、セキュアなIotを目指したい
-- 実は、pythonは数行しか書いていなので
-pythonのflaskでWebアプリを書いてみたい
-- 楽しかったです!!!
+- 自画自賛
